@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<title>index</title>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+	<script src="identicon.js"></script>
+	<script type="text/javascript" charset="utf-8">
+	// method written by Dustin Diaz
+	function getElementsByClassName(node,classname) {
+		if (node.getElementsByClassName) {
+			return node.getElementsByClassName(classname);
+		} else {
+			return (function getElementsByClass(searchClass,node) {
+				if ( node == null )
+				node = document;
+				var classElements = [],
+				els = node.getElementsByTagName("*"),
+				elsLen = els.length,
+				pattern = new RegExp("(^|\\s)"+searchClass+"(\\s|$)"), i, j;
+
+				for (i = 0, j = 0; i < elsLen; i++) {
+					if ( pattern.test(els[i].className) ) {
+						classElements[j] = els[i];
+						j++;
+					}
+				}
+				return classElements;
+			})(classname, node);
+		}
+	}
+	
+	window.onload = function () {
+		var elements = getElementsByClassName(document, "identicon"),
+		n = elements.length;
+		for (var i = 0; i < n; i++) {
+			var e = elements[i];
+			var identicon = Identicon.fromDOMElement(e);
+			identicon.draw();			  
+		}		
+	};
+	</script>
+</head>
+<body>
+	<p class="identicon" data-value="helloworld!" style="width:16px"></p>
+	<p class="identicon" data-value="helloworld!" style="width:32px"></p>
+	<p class="identicon" data-value="helloworld!" style="width:64px"></p>
+	<p class="identicon" data-value="helloworld!" style="width:128px"></p>
+</body>
