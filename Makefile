@@ -1,8 +1,9 @@
 all: compile
 
 compile:
-	closure-compiler identicon.js > identicon-min.js
+	closure-compiler --js identicon.js --js_output_file identicon-compiled.js \
+	    --compilation_level SIMPLE_OPTIMIZATIONS
 
 clean:
-	rm -f identicon-min.js
+	rm -f identicon-compiled.js
 	
